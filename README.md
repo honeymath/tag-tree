@@ -34,16 +34,29 @@ Subfolders:
 
 _questions/: Contains Python scripts defining mandatory questions for labeling under this tag. For example, if a label represents a task, questions may include “What is the deadline?” The answers of the quetion is stored at the datafield of the file the corresponding label.
 
+_tempanswers/: Contains those answers that are not yet complited but somehow saved temporarily.  
+
 _dataformat/: Contains a YAML structure mapping fields to Python scripts. This defines how the labeled data should be formatted into tabular or structured output.
 
 _addition/: Contains scripts to generate additional instructions or derived content, such as extracting referenced email content, computed fields, or supplementary classification.
 
 ## Scripts for this project
 
+- introduce.py label  // Introducing a label, and possible sublabels, it goes through readme for each folder to introduce it.
 - enlabel.py filemane.ext -l Label1/Label2/Label3   // adding a label to a file, and this triggers some questions and one have to answer. give user the quit chance so when not anwser the question is able to give up the label.
 - viewlabel.py filename.ext  // Able to get the full report of the labeled file as text.
-- filterbylabel.py label1, label2 ,... // find those files by the attached label.
+- findbylabel.py label1, label2 ,... // find those files by the attached label. can set to say if need to find files under sublabels
 - settings.ini   // some settings
+
+System level operation
+- generatelabel.py  // fill a questionare to generate a label
+- registerlabel.py  // when a label added, this file is respponsible to register it, or say record it.  It can also run as an option to check folder and subfolders and check for unregistered one, or the one that has been deleted.
+- cleanlabel.py // clean the label based on some criterion, usually the expire timestamp.
+- /tests // some tests that can be done.
+
+User level operation
+- currentuser.py // return the current user
+- authorize.py // authorize a user, or change a user
 
 
 ## Label Metadata Files
