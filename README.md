@@ -25,15 +25,26 @@ Each label folder includes:
 
 readme.md: Human-readable description.
 
-A symbolic link to the file(s) it labels, creating a bidirectional connection.
+Content of details of labels (Label Metadata Files) stored as `{inode}.yaml`, the advantage of storing inode is the uniqueness of it among all files suitable for the situation where the file could be moved, or folder name changed; however it does not suitable if user want to quickly replace a content of a file by deleting and renaming. The system is designed for AI useage.
+
+To enable bidirection links, there is a registrar registering labels attached for each inode.
+
 
 Subfolders:
 
-_questions/: Contains Python scripts defining mandatory questions for labeling under this tag. For example, if a label represents a task, questions may include “What is the deadline?”
+_questions/: Contains Python scripts defining mandatory questions for labeling under this tag. For example, if a label represents a task, questions may include “What is the deadline?” The answers of the quetion is stored at the datafield of the file the corresponding label.
 
 _dataformat/: Contains a YAML structure mapping fields to Python scripts. This defines how the labeled data should be formatted into tabular or structured output.
 
 _addition/: Contains scripts to generate additional instructions or derived content, such as extracting referenced email content, computed fields, or supplementary classification.
+
+## Scripts for this project
+
+- enlabel.py filemane.ext -l Label1/Label2/Label3   // adding a label to a file, and this triggers some questions and one have to answer. give user the quit chance so when not anwser the question is able to give up the label.
+- viewlabel.py filename.ext  // Able to get the full report of the labeled file as text.
+- filterbylabel.py label1, label2 ,... // find those files by the attached label.
+- settings.ini   // some settings
+
 
 ## Label Metadata Files
 
